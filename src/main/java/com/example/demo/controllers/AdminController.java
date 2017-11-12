@@ -1,5 +1,6 @@
 package com.example.demo.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,11 +9,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.models.User;
+import com.example.demo.models.UserModel;
+import com.example.demo.repositories.UserRepository;
 
 @Controller
 public class AdminController {
 	
 	private final String KEY_LOCATION = "location";
+
+	@Autowired
+	UserRepository userRepo;
 	
 	@RequestMapping("/")
 	public String getHome(Model model) {
@@ -34,6 +40,9 @@ public class AdminController {
 		System.out.println(user.getContactNumber());
 		System.out.println(user.getEmailAddress());
 		System.out.println(user.getIdProof().getOriginalFilename());
+		UserModel userModel = user.generateUserModel();
+		userModel.setIdProofLocation(user.getIdProof().getOriginalFilename());
+		this.userRepo.save(userModel);
 		model.addAttribute(KEY_LOCATION, 1);
 		return "index";
 	}

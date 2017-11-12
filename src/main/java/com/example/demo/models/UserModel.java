@@ -1,11 +1,28 @@
 package com.example.demo.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-import org.springframework.web.multipart.MultipartFile;
 
-public class User {
+@Entity
+@Table(name = "user_tbl")
+public class UserModel {
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
 	private String name;
+	private String contactNumber;
+	private String dateOfBirth;
+	private String emailAddress;
+	private String idProofLocation;
+
+	public UserModel() {
+		super();
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -14,21 +31,12 @@ public class User {
 		this.id = id;
 	}
 
-	private String contactNumber;
-	private String dateOfBirth;
-	private String emailAddress;
-	private MultipartFile idProof;
-
-	public User() {
-		super();
+	public String getIdProofLocation() {
+		return idProofLocation;
 	}
 
-	public MultipartFile getIdProof() {
-		return idProof;
-	}
-
-	public void setIdProof(MultipartFile idProof) {
-		this.idProof = idProof;
+	public void setIdProofLocation(String idProofLocation) {
+		this.idProofLocation = idProofLocation;
 	}
 
 	public String getName() {
@@ -61,14 +69,5 @@ public class User {
 
 	public void setEmailAddress(String emailAddress) {
 		this.emailAddress = emailAddress;
-	}
-
-	public UserModel generateUserModel() {
-		UserModel model = new UserModel();
-		model.setName(this.name);
-		model.setContactNumber(this.contactNumber);
-		model.setDateOfBirth(this.dateOfBirth);
-		model.setEmailAddress(this.emailAddress);
-		return model;
 	}
 }
