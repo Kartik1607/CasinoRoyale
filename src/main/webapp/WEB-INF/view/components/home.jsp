@@ -1,0 +1,1 @@
+<img src="/assets/wallpaper.jpg" class="w-100 mx-auto d-block"/>
