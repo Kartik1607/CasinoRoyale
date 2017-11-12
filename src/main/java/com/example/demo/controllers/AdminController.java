@@ -3,7 +3,11 @@ package com.example.demo.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.example.demo.models.User;
 
 @Controller
 public class AdminController {
@@ -19,7 +23,16 @@ public class AdminController {
 	@GetMapping("/register")
 	public String getRegister(Model model) {
 		model.addAttribute(KEY_LOCATION, 1);
+		model.addAttribute("user", new User());
 		return "index";
+	}
+	
+	@PostMapping("/register")
+	public void test(@ModelAttribute User user) {
+		System.out.println(user.getName());
+		System.out.println(user.getDateOfBirth());
+		System.out.println(user.getContactNumber());
+		System.out.println(user.getEmailAddress());
 	}
 	
 	@GetMapping("/users")
