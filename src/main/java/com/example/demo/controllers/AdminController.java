@@ -28,11 +28,14 @@ public class AdminController {
 	}
 	
 	@PostMapping("/register")
-	public void test(@ModelAttribute User user) {
+	public String test(@ModelAttribute User user, Model model) {
 		System.out.println(user.getName());
 		System.out.println(user.getDateOfBirth());
 		System.out.println(user.getContactNumber());
 		System.out.println(user.getEmailAddress());
+		System.out.println(user.getIdProof().getOriginalFilename());
+		model.addAttribute(KEY_LOCATION, 1);
+		return "index";
 	}
 	
 	@GetMapping("/users")

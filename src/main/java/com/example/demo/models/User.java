@@ -1,10 +1,21 @@
 package com.example.demo.models;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class User {
 	private String name;
 	private String contactNumber;
 	private String dateOfBirth;
 	private String emailAddress;
+	private MultipartFile idProof;
+	
+	
+	public MultipartFile getIdProof() {
+		return idProof;
+	}
+	public void setIdProof(MultipartFile idProof) {
+		this.idProof = idProof;
+	}
 	public String getName() {
 		return name;
 	}
