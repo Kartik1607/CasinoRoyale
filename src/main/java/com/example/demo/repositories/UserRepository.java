@@ -33,7 +33,7 @@ public interface UserRepository extends CrudRepository<UserModel, Integer>
     int updateBalance(@Param("uid") Long uid, @Param("balanceAmount") BigDecimal balanceAmount);
 
 	@Modifying
-	@Query("UPDATE UserModel u SET u.blockedAmount = u.blockedAmount + :blockedAmount WHERE u.uid = :uid")
+	@Query("UPDATE UserModel u SET u.blockedAmount = u.blockedAmount + :blockedAmount, u.balanceAmount = u.balanceAmount - :blockedAmount WHERE u.uid = :uid")
     int updateBlockingAmount(@Param("uid") Long uid, @Param("blockedAmount") BigDecimal blockedAmount);
 
 

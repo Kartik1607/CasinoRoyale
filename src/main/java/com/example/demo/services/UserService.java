@@ -65,25 +65,13 @@ public class UserService {
 	}
 	
 	@Transactional
-	private void addBlockingAmount(Long uid, BigDecimal amount) {
+	public void blockAmount(Long uid, BigDecimal amount) {
 		this.userRepository.updateBlockingAmount(uid, amount);
 	}
 	
 	@Transactional
-	private void removeBlockingAmount(Long uid, BigDecimal amount) {
-		this.userRepository.updateBlockingAmount(uid, amount.multiply(new BigDecimal("-1")));
-	}
-	
-	@Transactional
-	public void blockAmount(Long uid, BigDecimal amount) {
-		this.deductBalance(uid, amount);
-		addBlockingAmount(uid, amount);
-	}
-	
-	@Transactional
 	public void unblockAmount(Long uid, BigDecimal amount) {
-		this.addBalance(uid, amount);
-		removeBlockingAmount(uid, amount);
+		this.userRepository.updateBlockingAmount(uid, amount.multiply(new BigDecimal("-1")));
 	}
 	
 	private void decorateUserModel(final UserModel userModel, final User user) {
