@@ -58,15 +58,18 @@ public class UserService {
 		this.userRepository.updateBalance(uid, amount);
 	}
 	
+	@Transactional
 	public void deductBalance(Long uid, BigDecimal amount) {
 		amount = amount.multiply(new BigDecimal("-1"));
-		this.addBalance(uid, amount);
+		this.userRepository.updateBalance(uid, amount);
 	}
 	
+	@Transactional
 	private void addBlockingAmount(Long uid, BigDecimal amount) {
 		this.userRepository.updateBlockingAmount(uid, amount);
 	}
 	
+	@Transactional
 	private void removeBlockingAmount(Long uid, BigDecimal amount) {
 		this.userRepository.updateBlockingAmount(uid, amount.multiply(new BigDecimal("-1")));
 	}
