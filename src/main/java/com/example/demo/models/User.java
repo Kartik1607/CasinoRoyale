@@ -1,6 +1,8 @@
 package com.example.demo.models;
 
 
+import java.sql.Date;
+
 import org.springframework.web.multipart.MultipartFile;
 
 public class User {
@@ -15,7 +17,7 @@ public class User {
 	}
 
 	private String contactNumber;
-	private String dateOfBirth;
+	private Date dateOfBirth;
 	private String emailAddress;
 	private MultipartFile idProof;
 
@@ -47,11 +49,11 @@ public class User {
 		this.contactNumber = contactNumber;
 	}
 
-	public String getDateOfBirth() {
+	public Date getDateOfBirth() {
 		return dateOfBirth;
 	}
 
-	public void setDateOfBirth(String dateOfBirth) {
+	public void setDateOfBirth(Date dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
 

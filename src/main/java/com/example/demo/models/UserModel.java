@@ -1,10 +1,15 @@
 package com.example.demo.models;
 
+import java.math.BigDecimal;
+import java.sql.Date;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 
 @Entity
@@ -13,11 +18,57 @@ public class UserModel {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
+	
+	@NotNull
 	private String name;
+	
+	@NotNull
+	@Column(unique = true)
 	private String contactNumber;
-	private String dateOfBirth;
+	
+	@NotNull
+	private Date dateOfBirth;
+	
+	@NotNull
+	@Column(unique = true)
 	private String emailAddress;
+	
+	@NotNull
 	private String idProofLocation;
+	
+	@NotNull
+	private BigDecimal balanceAmount;
+	
+	@NotNull
+	private BigDecimal blockedAmount;
+
+	@NotNull
+	@Column(unique = true)
+	private long UID;
+
+	public BigDecimal getBalanceAmount() {
+		return balanceAmount;
+	}
+
+	public void setBalanceAmount(BigDecimal balanceAmount) {
+		this.balanceAmount = balanceAmount;
+	}
+
+	public BigDecimal getBlockedAmount() {
+		return blockedAmount;
+	}
+
+	public void setBlockedAmount(BigDecimal blockedAmount) {
+		this.blockedAmount = blockedAmount;
+	}
+
+	public long getUID() {
+		return UID;
+	}
+
+	public void setUID(long uID) {
+		UID = uID;
+	}
 
 	public UserModel() {
 		super();
@@ -55,11 +106,11 @@ public class UserModel {
 		this.contactNumber = contactNumber;
 	}
 
-	public String getDateOfBirth() {
+	public Date getDateOfBirth() {
 		return dateOfBirth;
 	}
 
-	public void setDateOfBirth(String dateOfBirth) {
+	public void setDateOfBirth(Date dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
 

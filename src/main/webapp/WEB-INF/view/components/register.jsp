@@ -1,6 +1,10 @@
-<div style="min-width:300px; max-width:800px; margin: auto auto;">
+<div class="container" style="max-width:800px; margin: auto auto;">
 
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<c:if test="${success}">
+	<div class="alert alert-success" role="alert">
+  		Account created. Unique account number is ${UID}
+	</div>
+</c:if>
 
 <form:form method="post" action="/register" modelAttribute="user" enctype="multipart/form-data">
 	<div class="form-group row">
@@ -33,51 +37,11 @@
   	
   	<div class="form-group row">
     	<form:label path="idProof" for="idProof" class="col-sm-2 col-form-label">Identity Proof</form:label>
-    	<form:input path="idProof" type="file" class="form-control-file" id="idProof" />
+    	<form:input path="idProof" type="file" class="form-control-file" id="idProof" required="required"/>
   	</div>
   	
   	<button class="btn btn-primary" type="submit">Register</button>
   	
 </form:form>
 
-
-
-
-<!-- 
-<form action="/abc" method="POST">
-  <div class="form-group row">
-    <label for="name" class="col-sm-2 col-form-label">Name</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="name" placeholder="Name">
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="dateOfBirth" class="col-sm-2 col-form-label">Date of Birth</label>
-    <div class="col-sm-10">
-      <input type="date" class="form-control" id="dateOfBirth">
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="contactNumber" class="col-sm-2 col-form-label">Contact</label>
-    <div class="col-sm-10">
-      <input type="number" class="form-control" id="contactNumber">
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="emailAddress" class="col-sm-2 col-form-label">Email Address</label>
-    <div class="col-sm-10">
-      <input type="email" class="form-control" id="emailAddress">
-    </div>
-  </div>
-  
-  
-  <div class="form-group row">
-    <label for="IdProof" class="col-sm-2 col-form-label">Identity Proof</label>
-    <input type="file" class="form-control-file" id="IdProof">
-  </div>
-   
-  
-  <button type="submit" class="btn btn-primary">Register</button>
-</form>
- -->
 </div>
