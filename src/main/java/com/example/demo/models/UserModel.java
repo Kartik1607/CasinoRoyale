@@ -44,7 +44,7 @@ public class UserModel {
 
 	@NotNull
 	@Column(unique = true)
-	private long UID;
+	private Long uid;
 
 	public BigDecimal getBalanceAmount() {
 		return balanceAmount;
@@ -61,13 +61,13 @@ public class UserModel {
 	public void setBlockedAmount(BigDecimal blockedAmount) {
 		this.blockedAmount = blockedAmount;
 	}
-
-	public long getUID() {
-		return UID;
+	
+	public Long getUid() {
+		return uid;
 	}
 
-	public void setUID(long uID) {
-		UID = uID;
+	public void setUid(Long uid) {
+		this.uid = uid;
 	}
 
 	public UserModel() {

@@ -30,7 +30,7 @@ public class RegistrationController {
 		UserModel userModel = this.UserService.saveUser(user);
 		
 		model.addAttribute(Constants.KEY_LOCATION, Constants.LOCATION_REGISTRATION);
-		model.addAttribute("UID", userModel.getUID());
+		model.addAttribute("UID", userModel.getUid());
 		model.addAttribute("success", true);
 		
 		return "index";

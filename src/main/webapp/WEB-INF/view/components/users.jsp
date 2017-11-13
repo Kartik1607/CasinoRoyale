@@ -1,5 +1,5 @@
+<%@include file="overlays/rechargeOverlay.jsp" %>
 <div class="container">
-
 	<form method="get" action="/search">
 		<div class="form-row">
 			<div class="form-group col-md-6">
@@ -47,7 +47,11 @@
 					<td>${user.getContactNumber()}</td>
 					<td>${user.getEmailAddress()}</td>
 					<td>${user.getBalanceAmount() }</td>
-					<td><button class="btn">Recharge</button></td>
+					<td>
+						<button class="btn" onclick="showRechargeDialog(${user.getUid()});return false;">
+							Recharge
+						</button>
+					</td>
 				</tr>
 			</c:forEach>
 		</tbody>
