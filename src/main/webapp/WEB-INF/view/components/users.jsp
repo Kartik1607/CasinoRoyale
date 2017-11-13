@@ -26,7 +26,7 @@
 		<button type="submit" class="btn btn-primary">Search</button>
 	</form>
 
-	<table class="table my-5">
+	<table class="table table-hover my-5">
 		<thead>
 			<tr>
 				<th scope="col">#</th>
