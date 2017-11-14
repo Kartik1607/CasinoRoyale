@@ -81,6 +81,13 @@ public class UserService {
 		userModel.setBlockedAmount(new BigDecimal("0"));
 		userModel.setUid(System.currentTimeMillis());
 	}
+
+	@Transactional
+	public UserModel removeBlockingAmount(Long uid, BigDecimal amount) {
+		this.userRepository.removeBlockingAmount(uid, amount);
+		return this.findByUID(uid);
+	}
+	
 	
 	
 }

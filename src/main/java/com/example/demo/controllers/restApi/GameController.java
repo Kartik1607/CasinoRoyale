@@ -17,6 +17,7 @@ import com.example.demo.models.UserModel;
 import com.example.demo.services.UserService;
 import com.querydsl.core.types.Predicate;
 
+
 @CrossOrigin
 @RestController
 @RequestMapping("/api")
@@ -56,6 +57,15 @@ public class GameController {
 		this.userService.unblockAmount(userId, amount);
 		return this.userService.findByUID(userId);
 	}
+	
+	@PutMapping("/removeBlockedAmount/{userId}")
+	public UserModel removeBlockedUserBalance(
+			@PathVariable(value = "userId", required = true) Long userId,
+			@RequestParam(value = "amount", required = true) BigDecimal amount) {
+		this.userService.removeBlockingAmount(userId, amount);
+		return this.userService.findByUID(userId);
+	}
+	
 	
 	@GetMapping("/users")
 	public Iterable<UserModel> getUsers(@QuerydslPredicate(root = UserModel.class) Predicate predicate) {
