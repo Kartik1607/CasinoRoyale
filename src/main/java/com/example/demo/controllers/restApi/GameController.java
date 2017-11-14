@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,7 +25,7 @@ public class GameController {
 	@Autowired
 	private UserService userService;
 
-	@PostMapping("/recharge/{userId}")
+	@PutMapping("/recharge/{userId}")
 	public UserModel rechargeUserBalance(
 			@PathVariable(value = "userId", required = true) Long userId,
 			@RequestParam(value = "amount", required = true) BigDecimal amount) {
@@ -32,7 +33,7 @@ public class GameController {
 		return this.userService.findByUID(userId);
 	}
 	
-	@PostMapping("/deduct/{userId}")
+	@PutMapping("/deduct/{userId}")
 	public UserModel deductUserBalance(
 			@PathVariable(value = "userId", required = true) Long userId,
 			@RequestParam(value = "amount", required = true) BigDecimal amount) {
@@ -40,7 +41,7 @@ public class GameController {
 		return this.userService.findByUID(userId);
 	}
 	
-	@PostMapping("/blockAmount/{userId}")
+	@PutMapping("/blockAmount/{userId}")
 	public UserModel blockUserBalance(
 			@PathVariable(value = "userId", required = true) Long userId,
 			@RequestParam(value = "amount", required = true) BigDecimal amount) {
@@ -48,7 +49,7 @@ public class GameController {
 		return this.userService.findByUID(userId);
 	}
 	
-	@PostMapping("/unBlockAmount/{userId}")
+	@PutMapping("/unBlockAmount/{userId}")
 	public UserModel unBlockUserBalance(
 			@PathVariable(value = "userId", required = true) Long userId,
 			@RequestParam(value = "amount", required = true) BigDecimal amount) {

@@ -14,6 +14,18 @@ function doRecharge() {
 		console.log('in');
 		$('#rechargeInputAmount').addClass('is-invalid');
 	} else {
-		
+		var url = "http://localhost:8080/api/recharge/" + uid + "?amount=" + amount;
+		var xhr = new XMLHttpRequest();
+		xhr.open("PUT", url, true);
+		xhr.setRequestHeader('Content-type','application/json; charset=utf-8');
+		xhr.onload = function () {
+			var res = JSON.parse(xhr.responseText);
+			if (xhr.readyState == 4 && xhr.status == "200") {
+				alert('New balance = ' + res.balanceAmount);
+			} else {
+				console.error(res);
+			}
+		}
+		xhr.send(null);
 	}
 } 

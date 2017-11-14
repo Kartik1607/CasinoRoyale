@@ -21,7 +21,7 @@
 							id="rechargeInputAmount" name="amount" type="number"
 							class="form-control" required>
 						<div class="invalid-feedback" id="rechargeFeedback">
-							<br> Please provide a valid city.
+							<br> Please provide a valid amount.
 						</div>
 						<span class="input-group-btn">
 							<button class="btn btn-secondary" type="button"
