@@ -9,10 +9,10 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.helper.ResponseModel;
 import com.example.demo.models.User;
 import com.example.demo.models.UserModel;
 import com.example.demo.repositories.UserRepository;
-import com.example.demo.services.ImageService.Response;
 import com.querydsl.core.types.Predicate;
 
 @Service
@@ -25,32 +25,66 @@ public class UserService {
 	private ImageService imageService;
 	
 	
-	public List<UserModel> findAll() {
+	public ResponseModel<List<UserModel>> findAll() {
+		ResponseModel<List<UserModel>> response = new ResponseModel<>();
 		List<UserModel> users = new ArrayList<>();
 		this.userRepository.findAll().forEach(user -> users.add(user));
-		return users;
+		response.setSuccess(true);
+		response.setData(users);
+		return response;
 	}
 	
-	public  Iterable<UserModel> findAll(Predicate predicate) {
-		return this.userRepository.findAll(predicate);
+	public ResponseModel<Iterable<UserModel>> findAll(Predicate predicate) {
+		ResponseModel<Iterable<UserModel>> response = new ResponseModel<>();
+		Iterable<UserModel> users = this.userRepository.findAll(predicate);
+		response.setSuccess(true);
+		response.setData(users);
+		return response;
 	}
 	
-	public UserModel saveUser(UserModel user) {
-		return this.userRepository.save(user);
+	public ResponseModel<UserModel> saveUser(UserModel user) {
+		ResponseModel<UserModel> response = new ResponseModel<>();
+		UserModel userResult = this.userRepository.save(user);
+		if(userResult != null) {
+			response.setSuccess(true);
+			response.setData(userResult);
+		} else {
+			response.setSuccess(false);
+			response.setError("Something went wrong");
+		}
+		return response;
 	}
 	
-	public UserModel saveUser(User user) {
+	public ResponseModel<UserModel> saveUser(User user) {
 		UserModel userModel = user.generateUserModel();
 		decorateUserModel(userModel, user);
 		return this.saveUser(userModel);
 	}
 	
-	public UserModel findById(Integer id) {
-		return this.userRepository.findById(id);
+	public ResponseModel<UserModel> findById(Integer id) {
+		ResponseModel<UserModel> response = new ResponseModel<>();
+		UserModel user = this.userRepository.findById(id);
+		if(user == null) {
+			response.setSuccess(false);
+			response.setError("Not found");
+		} else {
+			response.setSuccess(true);
+			response.setData(user);
+		}
+		return response;
 	}
 	
-	public UserModel findByUID(Long uid) {
-		return this.userRepository.findByUid(uid);
+	public ResponseModel<UserModel> findByUID(Long uid) {
+		ResponseModel<UserModel> response = new ResponseModel<>();
+		UserModel user = this.userRepository.findByUid(uid);
+		if(user == null) {
+			response.setSuccess(false);
+			response.setError("Not found");
+		} else {
+			response.setSuccess(true);
+			response.setData(user);
+		}
+		return response;
 	}
 	
 	@Transactional
@@ -75,19 +109,17 @@ public class UserService {
 	}
 	
 	private void decorateUserModel(final UserModel userModel, final User user) {
-		Response<String> res = this.imageService.saveImage(user.getIdProof());
-		userModel.setIdProofLocation(res.data);
+		ResponseModel<String> res = this.imageService.saveImage(user.getIdProof());
+		userModel.setIdProofLocation(res.getData());
 		userModel.setBalanceAmount(new BigDecimal("500"));
 		userModel.setBlockedAmount(new BigDecimal("0"));
 		userModel.setUid(System.currentTimeMillis());
 	}
 
 	@Transactional
-	public UserModel removeBlockingAmount(Long uid, BigDecimal amount) {
+	public ResponseModel<UserModel> removeBlockingAmount(Long uid, BigDecimal amount) {
 		this.userRepository.removeBlockingAmount(uid, amount);
 		return this.findByUID(uid);
-	}
-	
-	
+	}	
 	
 }

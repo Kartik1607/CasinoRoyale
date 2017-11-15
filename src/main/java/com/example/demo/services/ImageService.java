@@ -9,51 +9,45 @@ import java.util.UUID;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.demo.helper.ResponseModel;
+
 @Service
 public class ImageService {
-
-	public class Response<T> {
-		public T data;
-		public String error;
-		public  boolean success;
-	}
 	
 	private final String UPLOADED_FOLDER = "images/";
 	
-	public Response<String> saveImage(MultipartFile file) {
-		Response<String> response = new Response<String>();
+	public ResponseModel<String> saveImage(MultipartFile file) {
+		ResponseModel<String> response = new ResponseModel<String>();
 		String fileName = UUID.randomUUID().toString();
 		file.getContentType();
 		if (file.isEmpty()) {
-			response.error = "EMPTY FILE";
-			response.success = false;
+			response.setError("Empty File");
+			response.setSuccess(false);
 		}
 		try {
 			byte[] bytes = file.getBytes();
 			Path path = Paths.get(UPLOADED_FOLDER + fileName + file.getOriginalFilename());
 			Files.write(path, bytes);
-			response.success = true;
-			response.data = fileName + file.getOriginalFilename();
+			response.setSuccess(true);
+			response.setData( fileName + file.getOriginalFilename() );
 		} catch (IOException e) {
-			response.success = false;
-			response.error = e.toString();
+			response.setSuccess(false);
+			response.setError(e.toString());
 		}
 		return response;
 	}
 	
-	public Response<byte[]> getFile(String fileName) {
-		Response<byte[]> response = new Response<>();
+	public ResponseModel<byte[]> getFile(String fileName) {
+		ResponseModel<byte[]> response = new ResponseModel<>();
 		byte[] bytes;
 		Path path = Paths.get(UPLOADED_FOLDER + fileName);
 		try {
 			bytes = Files.readAllBytes(path);
-			response.data = bytes;
-			response.success = true;
-			System.out.println(response.data);
+			response.setData(bytes);
+			response.setSuccess(true);
 		} catch (IOException e) {
-			response.success = false;
-			response.data = null;
-			response.error = e.toString();
+			response.setSuccess(false);
+			response.setError(e.toString());
 			e.printStackTrace();
 		}
 		return response;

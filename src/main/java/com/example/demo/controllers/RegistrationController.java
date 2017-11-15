@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.demo.helper.Constants;
+import com.example.demo.helper.ResponseModel;
 import com.example.demo.models.User;
 import com.example.demo.models.UserModel;
 import com.example.demo.services.UserService;
@@ -27,12 +28,12 @@ public class RegistrationController {
 	
 	@PostMapping("/register")
 	public String test(@ModelAttribute User user, Model model) {
-		UserModel userModel = this.UserService.saveUser(user);
+		ResponseModel<UserModel> response = this.UserService.saveUser(user);
+		UserModel userModel = response.getData();
 		
 		model.addAttribute(Constants.KEY_LOCATION, Constants.LOCATION_REGISTRATION);
 		model.addAttribute("UID", userModel.getUid());
 		model.addAttribute("success", true);
-		
 		return "index";
 	}
 	

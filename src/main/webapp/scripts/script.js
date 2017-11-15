@@ -1,5 +1,4 @@
 function showRechargeDialog(uid) {
-	console.log(uid);
 	$('#rechargeInputUserID').val(uid);
 	$('#rechargeModal').modal('show');
 }
