@@ -20,7 +20,7 @@ public class UserSearchController {
 	@GetMapping("/users")
 	public String getUsers(Model model) {
 		model.addAttribute(Constants.KEY_LOCATION, Constants.LOCATION_USERS);
-		model.addAttribute("users", this.userService.findAll());
+		model.addAttribute("users", this.userService.findAll().getData());
 		return "index";
 	}
 	
@@ -29,7 +29,7 @@ public class UserSearchController {
 			 @QuerydslPredicate(root = UserModel.class) Predicate predicate) {
 		
 		model.addAttribute(Constants.KEY_LOCATION, Constants.LOCATION_USERS);
-		model.addAttribute("users", this.userService.findAll(predicate));
+		model.addAttribute("users", this.userService.findAll(predicate).getData());
 		
 		return "index";
 	}

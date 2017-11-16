@@ -87,6 +87,32 @@ public class UserService {
 		return response;
 	}
 	
+	public ResponseModel<UserModel> findByEmailAddress(String emailAddress) {
+		ResponseModel<UserModel> response = new ResponseModel<>();
+		UserModel user = this.userRepository.findByEmailAddress(emailAddress);
+		if(user == null) {
+			response.setSuccess(false);
+			response.setError("Not found");
+		} else {
+			response.setSuccess(true);
+			response.setData(user);
+		}
+		return response;
+	}
+	
+	public ResponseModel<UserModel> findByContactNumber(String contactNumber) {
+		ResponseModel<UserModel> response = new ResponseModel<>();
+		UserModel user = this.userRepository.findByContactNumber(contactNumber);
+		if(user == null) {
+			response.setSuccess(false);
+			response.setError("Not found");
+		} else {
+			response.setSuccess(true);
+			response.setData(user);
+		}
+		return response;
+	}
+	
 	@Transactional
 	public void addBalance(Long uid, BigDecimal amount) {
 		this.userRepository.updateBalance(uid, amount);

@@ -28,6 +28,10 @@ public interface UserRepository extends CrudRepository<UserModel, Integer>
 	
 	public UserModel findByUid(Long uid);
 	
+	public UserModel findByEmailAddress(String emailAddress);
+	
+	public UserModel findByContactNumber(String contactNumber);
+	
 	@Modifying
 	@Query("UPDATE UserModel u SET u.balanceAmount = u.balanceAmount + :balanceAmount WHERE u.uid = :uid")
     int updateBalance(@Param("uid") Long uid, @Param("balanceAmount") BigDecimal balanceAmount);

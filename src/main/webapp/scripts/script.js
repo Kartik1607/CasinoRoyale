@@ -3,6 +3,11 @@ function showRechargeDialog(uid) {
 	$('#rechargeModal').modal('show');
 }
 
+function showUserIdProof(idProof) {
+	$('#userIDImg').attr('src','http://localhost:8080/images/'+idProof);
+	$('#userDetailModal').modal('show');
+}
+
 function doRecharge() {
 	console.log('Inside');
 	var uid = $('#rechargeInputUserID').val();

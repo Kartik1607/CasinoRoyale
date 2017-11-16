@@ -1,4 +1,5 @@
 <%@include file="overlays/rechargeOverlay.jsp" %>
+<%@include file="overlays/userIdProof.jsp" %>
 <div class="container">
 	<form method="get" action="/search">
 		<div class="form-row">
@@ -36,6 +37,7 @@
 				<th scope="col">Email</th>
 				<th scope="col">Balance</th>
 				<th scope="col">Recharge</th>
+				<th scope="col">Id Proof</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -50,6 +52,11 @@
 					<td>
 						<button class="btn" onclick="showRechargeDialog(${user.getUid()});return false;">
 							Recharge
+						</button>
+					</td>
+					<td>
+						<button class="btn" onclick="showUserIdProof('${user.getIdProofLocation()}');return false;">
+							View
 						</button>
 					</td>
 				</tr>
