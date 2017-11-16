@@ -17,6 +17,7 @@ function doRecharge() {
 	if(amount < 0) {
 		console.log('in');
 		$('#rechargeInputAmount').addClass('is-invalid');
+		$('#rechargeFeedback').show();
 	} else {
 		var url = "http://localhost:8080/api/recharge/" + uid + "?amount=" + amount;
 		var xhr = new XMLHttpRequest();

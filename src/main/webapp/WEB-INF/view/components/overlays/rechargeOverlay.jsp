@@ -19,14 +19,14 @@
 					<div class="input-group">
 						<span class="input-group-addon">Rs</span> <input
 							id="rechargeInputAmount" name="amount" type="number"
-							class="form-control" required>
-						<div class="invalid-feedback" id="rechargeFeedback">
-							<br> Please provide a valid amount.
-						</div>
-						<span class="input-group-btn">
+							class="form-control" required> <span
+							class="input-group-btn">
 							<button class="btn btn-secondary" type="button"
 								onclick="doRecharge()">Go!</button>
 						</span>
+					</div>
+					<div style="display:none; color:red" id="rechargeFeedback">
+						<br> Please provide a valid amount.
 					</div>
 
 
