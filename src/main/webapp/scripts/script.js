@@ -26,7 +26,7 @@ function doRecharge() {
 		xhr.onload = function () {
 			var res = JSON.parse(xhr.responseText);
 			if (xhr.readyState == 4 && xhr.status == "200") {
-				alert('New balance = ' + res.balanceAmount);
+				alert('New balance = ' + res.data.balanceAmount);
 			} else {
 				console.error(res);
 			}
