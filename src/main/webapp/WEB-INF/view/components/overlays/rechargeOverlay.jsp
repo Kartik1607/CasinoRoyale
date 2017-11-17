@@ -26,7 +26,7 @@
 						</span>
 					</div>
 					<div style="display:none; color:red" id="rechargeFeedback">
-						<br> Please provide a valid amount.
+						<br> Please provide a valid amount. [1-10000000]
 					</div>
 
 

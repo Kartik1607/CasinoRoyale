@@ -14,7 +14,7 @@ function doRecharge() {
 	var amount = + ($('#rechargeInputAmount').val());
 	console.log(uid);
 	console.log(typeof amount);
-	if(amount < 0) {
+	if(amount < 0 || amount > 10000000 ) {
 		console.log('in');
 		$('#rechargeInputAmount').addClass('is-invalid');
 		$('#rechargeFeedback').show();
