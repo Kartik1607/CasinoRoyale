@@ -29,6 +29,11 @@ public class UserValidator implements Validator {
 		if (user.getName().length() < 6 || user.getName().length() > 32) {
             errors.rejectValue("name", "Size.userForm");
         }
+
+		String nameRegex = "^[\\p{L} .'-]+$";
+		if ( ! user.getName().matches(nameRegex)) {
+			errors.rejectValue("name", "Invalid.userForm");
+		}
 		
 		BigInteger contactNumber = new BigInteger(user.getContactNumber());
 		if ( user.getContactNumber().length() != 10 || contactNumber.signum() == -1) {
