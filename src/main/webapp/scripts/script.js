@@ -4,7 +4,7 @@ function showRechargeDialog(uid) {
 }
 
 function showUserIdProof(idProof) {
-	$('#userIDImg').attr('src','http://casino-admin.herokuapp.com/images/'+idProof);
+	$('#userIDImg').attr('src','http://localhost:8080/images/'+idProof);
 	$('#userDetailModal').modal('show');
 }
 
@@ -19,7 +19,7 @@ function doRecharge() {
 		$('#rechargeInputAmount').addClass('is-invalid');
 		$('#rechargeFeedback').show();
 	} else {
-		var url = "http://casino-admin.herokuapp.com/api/recharge/" + uid + "?amount=" + amount;
+		var url = "http://localhost:8080/api/recharge/" + uid + "?amount=" + amount;
 		var xhr = new XMLHttpRequest();
 		xhr.open("PUT", url, true);
 		xhr.setRequestHeader('Content-type','application/json; charset=utf-8');
