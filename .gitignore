@@ -65,3 +65,4 @@ atlassian-ide-plugin.xml
 .gradletasknamecache
 
 images/*
+!images/.gitkeep.txt
