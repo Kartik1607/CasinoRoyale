@@ -12,7 +12,7 @@ This project was part of training at <a href='http://www.nagarro.com/en'>Nagarro
 
 ## Live Demo
 
-Live Demo is hosted using [Heroku](http://casino-admin.herokuapp.com/) </ br>
+Live Demo is hosted using [Heroku](http://casino-admin.herokuapp.com/) <br>
 The demo utilizes MySql server hosted by [GearHost](https://www.gearhost.com/)
 
 ## Development server
